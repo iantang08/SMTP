@@ -22,11 +22,16 @@ public class Map extends JFrame {
 	private Font textFont = new Font("Verdana", Font.BOLD, 14);
 	public Map() {
 		map = new ImagePanel();
-		
+		changeFloor = new JButton("Change Map");
+		changeFloor.setBounds(1600, 300, 300, 200);
+		backgroundLabel = new JLabel();
+		backgroundLabel.add(changeFloor);
+		map.add(changeFloor);
 		add(map);
 		setSize(1920, 1080);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 	}
 
 	private void loadMaps() {
