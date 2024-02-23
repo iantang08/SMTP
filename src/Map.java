@@ -28,15 +28,15 @@ public class Map extends JFrame implements ActionListener, MouseListener {
 	}
 	
 	private void initUI() {
-        map = new ImagePanel(); // Assuming the first floor is the default
+        map = new ImagePanel(); 
         changeFloor = new JButton("Change Map");
-        changeFloor.setBounds(1600, 300, 300, 50); // Adjust size as needed
+        changeFloor.setBounds(1600, 300, 300, 50); 
         changeFloor.addActionListener(this);
 
-        // Adding button directly to the map panel for simplicity
-        map.setLayout(new BorderLayout());
-        map.add(changeFloor, BorderLayout.SOUTH); // Example placement
-
+        map.add(changeFloor); 
+        map.addMouseListener(this);
+        map.revalidate();
+        map.repaint();
         add(map);
         setSize(1920, 1080);
         setVisible(true);
@@ -88,7 +88,8 @@ public class Map extends JFrame implements ActionListener, MouseListener {
 	
 	public void mouseClicked(MouseEvent e) {
         // Call displayChoices and pass the mouse click coordinates
-        
+		displayChoices(e.getX(), e.getY());
+		
     }
 
     public void displayChoices(int x, int y) {
@@ -96,12 +97,18 @@ public class Map extends JFrame implements ActionListener, MouseListener {
         int response = JOptionPane.showConfirmDialog(this, "Do you want to place a marker at this location?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         
         if (response == JOptionPane.YES_OPTION) {
-            map.placeMarker(x, y);
+        	// Calculate the scale factor
+    	    double scaleX = (double) currentMap.getWidth() / getWidth();
+    	    double scaleY = (double) currentMap.getHeight() / getHeight();
+    	    
+    	    // Adjust the mouse click coordinates
+    	    int adjustedX = (int) (x * scaleX);
+    	    int adjustedY = (int) (y * scaleY);
+    	    map.placeMarker(adjustedX, adjustedY);
         }
     }
 
-	public void mousePressed(MouseEvent e) {		
-		displayChoices(e.getX(), e.getY());
+	public void mousePressed(MouseEvent e) {	
 	}
 	public void mouseReleased(MouseEvent e) {		
 	}

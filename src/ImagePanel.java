@@ -1,13 +1,17 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class ImagePanel extends JPanel {
+public class ImagePanel extends JPanel implements MouseListener {
     private static BufferedImage map1, map2, currentMap;
     
     public ImagePanel() {
@@ -42,11 +46,43 @@ public class ImagePanel extends JPanel {
         // This could involve updating the map image to include a marker icon at the specified coordinates
         System.out.println("Placing marker at: " + x + ", " + y);
         Graphics2D g = currentMap.createGraphics();
-        g.drawRect(x, y, 10, 10);
+        g.setColor(Color.RED);
+        g.fillRect(x, y, 10, 10);
+        g.dispose();
         repaint();
     }
 	
     public BufferedImage getCurrentMap() {
     	return currentMap;
     }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	    
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
