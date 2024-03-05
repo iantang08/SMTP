@@ -10,7 +10,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 /**
  * Start method to open new frame for users to register or sign in
- * @author Ian Tang
  * Date: Feb 12, 2024
  */
 public class Start extends JFrame implements ActionListener {
@@ -53,6 +52,8 @@ public class Start extends JFrame implements ActionListener {
 		} //storing data into 2D String array 
 		backgroundLabel = new JLabel(); //instantiating background label
 		backgroundLabel.setSize(1280, 972); //setting size
+		backgroundLabel.setOpaque(true);
+		backgroundLabel.setBackground(Color.gray);
 		f = new JFrame("SMTP - Login"); //instantiating frame
 		JLabel newPlayer = new JLabel("New to the program? Register now!"); //instantiating JLabel
 		newPlayer.setBounds(555, 480, 300, 30); //setting bounds
