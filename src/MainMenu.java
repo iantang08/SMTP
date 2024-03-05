@@ -38,8 +38,8 @@ public class MainMenu extends JFrame implements ActionListener{
 		f.setSize(1600, 900); //setting size of frame
 		backgroundLabel.setSize(1600, 900); //setting size of label
 		titleLabel.setSize(980,60); //setting size of label 
-		titleLabel.setBounds(180, 100, 1158, 97); //setting position of label
-		makeLabel(titleLabel);
+		titleLabel.setBounds(550, 100, 1200, 100); //setting position of label
+		makeLabel(titleLabel); titleLabel.setFont(new Font("Verdana", Font.BOLD, 18));
 		map = new JButton("Map"); //initializing new button for starting the game
 		map.setBounds(600, 300, 300, 60); //setting position of game button
 		statistics = new JButton("Statistics"); //initializing new button for the tutorial

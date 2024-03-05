@@ -168,7 +168,9 @@ public class Incident {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return incidents.get(incidents.size()-1).toString();
+		if(incidents.size()!=0)return incidents.get(incidents.size()-1).toString();
+		else
+			return "no incidents";
 	}
 
 	
