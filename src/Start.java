@@ -22,7 +22,7 @@ public class Start extends JFrame implements ActionListener {
 	private JLabel userLabel, passLabel;
 	private JTextArea userName; 
 	private JPasswordField password;
-	private String fileName = "accounts.txt"; //initializing string
+	private String fileName = "./accounts.txt"; //initializing string
 	private BufferedReader in;
 	private BufferedWriter out;
 	public static ArrayList<UserAccount> accounts = new ArrayList<>(); //initializing string array

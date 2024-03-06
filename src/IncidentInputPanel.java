@@ -17,7 +17,7 @@ public class IncidentInputPanel extends JFrame implements ActionListener {
 
         // Initialize components
         if(Map.getCurrentFloor()==1) {
-        	locationField = new JComboBox<>(new String[]{"North Parking Lot", "South Parking Lot", "Exit11-12 Hallway", "C-Hall", "English Hallway", "Swimming Pool /Health Room Hall", "Glass Hallway", "Music Hall", "S Hallway", "Gym 1", "Boy's Single Gym", "Girl's Single Gym", "Front Foyer"});
+        	locationField = new JComboBox<>(new String[]{"North Parking Lot", "South Parking Lot", "Exit11-12 Hallway", "C-Hall", "English Hallway", "Swimming Pool / Health Room Hall", "Glass Hallway", "Music Hall", "S Hallway", "Gym 1", "Boy's Single Gym", "Girl's Single Gym", "Front Foyer"});
         } else {
         	locationField = new JComboBox<>(new String[]{"Math Hall", "Science Hall", "Third Floor"});
         }
@@ -49,16 +49,21 @@ public class IncidentInputPanel extends JFrame implements ActionListener {
         submitButton.addActionListener(this);
     }
 
-
+    
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == submitButton) {
 			String location = (String) locationField.getSelectedItem();
+			System.out.println("location: " + location);
 			String time = timeField.getText();
 	        String date = dateField.getText();
 	        String description = descriptionField.getText();
 	        String severity = (String) severityComboBox.getSelectedItem();
 	        if(time.equals("") || date.equals("") || description.equals("")) {
 	        	JOptionPane.showMessageDialog(null, "Please fill in the information!!");
+	        } else if (!validTime(time)){
+	        	JOptionPane.showMessageDialog(null, "Invalid time inputted.");
+	        } else if (!validDate(date)) {
+	        	JOptionPane.showMessageDialog(null, "Invalid date inputted.");
 	        } else {
 	        	Incident incident = new Incident(location, time, date, description, severity, Map.getCurrentFloor(), x, y);
 		        incidents.add(incident);
@@ -80,5 +85,22 @@ public class IncidentInputPanel extends JFrame implements ActionListener {
 	        }
 	        
 		}
+	}
+
+
+	private boolean validTime(String time) {
+		if(time.length() != 5 || !time.contains(":"))return false;
+		int hours = Integer.parseInt(time.split(":")[0]);
+		int minutes = Integer.parseInt(time.split(":")[1]);
+		if(hours >= 0 && hours <= 24 && minutes >= 0 && minutes <= 59)return true; 
+		return false;
+	}
+	
+	private boolean validDate(String date) {
+		if(date.length() != 5 || !date.contains("/"))return false;
+		int month = Integer.parseInt(date.split("/")[0]);
+		int day = Integer.parseInt(date.split("/")[1]);
+		if(month >= 1 && month <= 12 && day >= 1 && day <= 31)return true; 
+		return false;
 	}
 }

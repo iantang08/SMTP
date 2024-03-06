@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LocationCounter {
-    private static Map<String, Integer> locationCounts = new HashMap<>();
+    private static HashMap<String, Integer> locationCounts = new HashMap<>();
 
     public LocationCounter() {
         locationCounts = new HashMap<>();
@@ -15,7 +15,7 @@ public class LocationCounter {
         locationCounts.put("Exit11-12 Hallway", 0);
         locationCounts.put("C-Hall", 0);
         locationCounts.put("English Hallway", 0);
-        locationCounts.put("Swimming Pool /Health Room Hall", 0);
+        locationCounts.put("Swimming Pool / Health Room Hall", 0);
         locationCounts.put("Glass Hallway", 0);
         locationCounts.put("Music Hall", 0);
         locationCounts.put("S Hall", 0);
@@ -30,10 +30,9 @@ public class LocationCounter {
 
     public static void incrementLocationCount(String location) {
         if (locationCounts.containsKey(location)) {
-            int currentCount = locationCounts.get(location);
-            locationCounts.put(location, currentCount + 1);
+            locationCounts.merge(location, 1, Integer::sum);
         } else {
-            System.out.println("Location not found in the counter.");
+            System.out.println("Location not found.");
         }
     }
     
@@ -94,6 +93,10 @@ public class LocationCounter {
 			}
 		}
 		return loc;
+	}
+	
+	public static HashMap<String, Integer> getLocationCounts(){
+		return locationCounts;
 	}
     
 }

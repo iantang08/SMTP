@@ -87,6 +87,7 @@ public class Incident {
 			e.printStackTrace();
 		}
         if(n != 0 && !initialized) {
+        	incidents = new ArrayList<>();
         	for(int i = 0; i < n; i++) {
         		try {
 					location = in.readLine();
@@ -107,7 +108,7 @@ public class Incident {
         	}
         	if(!initialized)loadSevCount();
         	initialized = true;
-        }
+        } 
         try {
 			in.close();
 		} catch (IOException e) {
@@ -124,8 +125,8 @@ public class Incident {
 	}
 	public static void saveData() throws IOException {
         incidents = sortByDate();
-		BufferedWriter writer = new BufferedWriter(new FileWriter("incidents.txt", false));
-        int numIncidents = incidents.size();
+		BufferedWriter writer = new BufferedWriter(new FileWriter("incidents.txt"));
+        int numIncidents = getNumIncidents();
         writer.write(numIncidents + "\n");
         for (Incident incident : incidents) {
             writer.write(incident.location + "\n");
@@ -162,12 +163,6 @@ public class Incident {
 	}
 
 	public static String getMostRecentIncident() {
-		try {
-			saveData();
-			loadData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		if(incidents.size()!=0)return incidents.get(incidents.size()-1).toString();
 		else
 			return "no incidents";

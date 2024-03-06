@@ -7,17 +7,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Map;
 
 public class Statistics extends JFrame implements ActionListener {
     private JButton backButton;
     private JTable statsTable;
     private DefaultTableModel tableModel;
-    
+    private boolean init = false;
     public Statistics() {
     	super("Statistics");
-    	LocationCounter.loadCount();
-    	Incident.loadData();
-        setSize(1920, 1080);
+    	if(!init) {
+    		LocationCounter.loadCount();
+    		Incident.loadData();    
+    	}
+    	setSize(1920, 1080);
         initTable();
         initBackButton();
         setVisible(true);
@@ -34,14 +37,18 @@ public class Statistics extends JFrame implements ActionListener {
         // Create the table with the model
         statsTable = new JTable(tableModel);
 
-        // Add some example data
+        // Add data
         tableModel.addRow(new Object[]{"Number of Incidents", Incident.getNumIncidents()});
         tableModel.addRow(new Object[]{"Most frequent location", LocationCounter.findMostFrequentLocation()});
         tableModel.addRow(new Object[]{"Incidents with low severity", Incident.getLoCount()});
         tableModel.addRow(new Object[]{"Incidents with medium severity", Incident.getMedCount()});
         tableModel.addRow(new Object[]{"Incidents with high severity", Incident.getHiCount()});
         tableModel.addRow(new Object[]{"Most recent incident: ", Incident.getMostRecentIncident()});
-        
+        for (Map.Entry<String,Integer> entry : LocationCounter.getLocationCounts().entrySet()) {
+			
+			tableModel.addRow(new Object[] {"Incidents in " + entry.getKey(), entry.getValue()});
+			
+		}
         // Wrap the table in a scroll pane
         JScrollPane scrollPane = new JScrollPane(statsTable);
         

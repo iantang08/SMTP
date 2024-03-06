@@ -60,9 +60,19 @@ public class MainMenu extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == map) {
 			new Map();
+			try {
+				Incident.saveData();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			f.dispose();
 		} else if (e.getSource() == statistics) {
 			new Statistics();
+			try {
+				Incident.saveData();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			f.dispose();
 		} else if (e.getSource() == exit) {
 			reprompt();
@@ -92,7 +102,14 @@ public class MainMenu extends JFrame implements ActionListener{
 		int result = JOptionPane.showConfirmDialog(f,
 				"Are you sure you want to quit?",
 				"Confirm Quit", JOptionPane.YES_NO_CANCEL_OPTION);
-		if (result == JOptionPane.YES_OPTION) System.exit(0);
+		if (result == JOptionPane.YES_OPTION) {
+			System.exit(0);
+			try {
+				Incident.saveData();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }
