@@ -6,38 +6,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LocationCounter {
-    private static HashMap<String, Integer> locationCounts = new HashMap<>();
-
+	private static HashMap<String, Integer> locationCounts = new HashMap<String, Integer>() {{
+        put("North Parking Lot", 0);
+        put("South Parking Lot", 0);
+        put("Exit11-12 Hallway", 0);
+        put("C-Hall", 0);
+        put("English Hallway", 0);
+        put("Swimming Pool / Health Room Hall", 0);
+        put("Glass Hallway", 0);
+        put("Music Hall", 0);
+        put("S Hall", 0);
+        put("Gym 1", 0);
+        put("Boy's Single Gym", 0);
+        put("Girl's Single Gym", 0);
+        put("Front Foyer", 0);
+        put("Math Hall", 0);
+        put("Science Hall", 0);
+        put("Third Floor", 0);
+    }};
+    private static boolean dataLoaded = false;
     public LocationCounter() {
-        locationCounts = new HashMap<>();
-        locationCounts.put("North Parking Lot", 0);
-        locationCounts.put("South Parking Lot", 0);
-        locationCounts.put("Exit11-12 Hallway", 0);
-        locationCounts.put("C-Hall", 0);
-        locationCounts.put("English Hallway", 0);
-        locationCounts.put("Swimming Pool / Health Room Hall", 0);
-        locationCounts.put("Glass Hallway", 0);
-        locationCounts.put("Music Hall", 0);
-        locationCounts.put("S Hall", 0);
-        locationCounts.put("Gym 1", 0);
-        locationCounts.put("Boy's Single Gym", 0);
-        locationCounts.put("Girl's Single Gym", 0);
-        locationCounts.put("Front Foyer", 0);
-        locationCounts.put("Math Hall", 0);
-        locationCounts.put("Science Hall", 0);
-        locationCounts.put("Third Floor", 0);
+    	
     }
 
     public static void incrementLocationCount(String location) {
         if (locationCounts.containsKey(location)) {
-            locationCounts.merge(location, 1, Integer::sum);
+            locationCounts.put(location, locationCounts.get(location)+1);
         } else {
             System.out.println("Location not found.");
         }
     }
     
     public static void loadCount() {
-    	
+    	if(!dataLoaded) {
             BufferedReader in = null;
     		try {
     			in = new BufferedReader(new FileReader("incidents.txt"));
@@ -67,7 +68,9 @@ public class LocationCounter {
     					
     					e.printStackTrace();
     				}
-            		locationCounts.merge(location, 1, Integer::sum);
+            		System.out.println(location);
+            		int val = locationCounts.get(location);
+            		locationCounts.put(location, val+1);
             	}
             }
             try {
@@ -75,6 +78,8 @@ public class LocationCounter {
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
+    	}
+    	dataLoaded = true;
     }
 
 	public static String findMostFrequentLocation() {

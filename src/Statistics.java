@@ -25,7 +25,7 @@ public class Statistics extends JFrame implements ActionListener {
         initBackButton();
         setVisible(true);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
     private void initTable() {
         // Define the column names for the table
