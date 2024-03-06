@@ -19,16 +19,11 @@ public class MainMenu extends JFrame implements ActionListener{
 	private JFrame f;
 	private JButton exit, map, statistics, changePassword;
 	JLabel backgroundLabel, titleLabel, authors, signedInAs;
-//	Font buttonFont, biggerFont;
 	Font textFont = new Font("Verdana", Font.BOLD, 14); //declaring font
 	boolean changedPass;
 
 	
 	public MainMenu() throws FontFormatException, IOException, LineUnavailableException, UnsupportedAudioFileException {
-//		background = new ImageIcon(getClass().getResource("/Backgrounds/mainMenuBackground.jpg")); // fetching background image
-//		buttonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/textFont.TTF")); //fetching font
-//		biggerFont = buttonFont.deriveFont(40f); //deriving font into bigger size
-//		changedPass = false; //initializing boolean
 		f = new JFrame("Student Misbehaviour Tracker Program"); //initializing new JFrame
 		backgroundLabel = new JLabel(); //initializing new background label
 		titleLabel = new JLabel("Student Misbehaviour Tracker Program"); //initializing new title label

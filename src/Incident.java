@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Incident {
 	private static int loCount = 0, medCount = 0, hiCount = 0;

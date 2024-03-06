@@ -1,6 +1,4 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +10,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,7 +21,6 @@ public class Map extends JFrame implements ActionListener, MouseListener {
 	private static int currentFloor = 1;
 	private JButton back, changeFloor;
 	private ImagePanel map;
-	private Font textFont = new Font("Verdana", Font.BOLD, 14);
 	public Map() {
 		Incident.loadData();
 		LocationCounter.loadCount();
@@ -98,7 +94,7 @@ public class Map extends JFrame implements ActionListener, MouseListener {
 	    	int response = JOptionPane.showConfirmDialog(this, "Do you want to place a marker at this location?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	        if (response == JOptionPane.YES_OPTION) {	
 	        	map.clearPreviewMarker();
-	        	map.addMarker(x, y);
+	        	map.addMarker(currentFloor, x, y);
 	        	System.out.println("Placing a marker at: " + (x) + " " + (y));
 	        	new IncidentInputPanel(Incident.getIncidents(), x, y);
 	        } else {

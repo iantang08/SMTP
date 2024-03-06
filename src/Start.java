@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
-/**
- * Start method to open new frame for users to register or sign in
- * Date: Feb 12, 2024
- */
+
 public class Start extends JFrame implements ActionListener {
 	//declaration of global variables
 	private static final long serialVersionUID = 1L;
